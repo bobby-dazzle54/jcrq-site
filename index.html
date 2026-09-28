@@ -196,10 +196,12 @@
     <p class="legal">&copy; 2026 JCRQ FM</p>
   </footer>
 </main>
-<script id="locked" type="application/octet-stream">ertafYmiPTvFO3qDGz/mHyt05dx4gxICGsEFDDx4w6fCkgfhVyUqq8L+qa0z7qqSkuLgGQty9/4SI8u89jQUmLLE4JqbEqiWB1g33G1iEVwyYrVbs0U3chW2AdlqSFDKUhcYNaPYGgBw6sf4qOeGlBRMMU0KkzNcK3dSia+ESW0d0CnvNPy1/B/V/V+9l5/V85vNiiEKjtSJ3FFvHXC+agqbr82AG+TVcfq5PZ4RkVzDCRPya9H05BknOCfD2h8swomAs+Sn9Jcm07o0H/xEFIgh7qh5TufrOSQNGA86436B/TVv/nwp6LsR780u21/YOdYr5l8hCn5wCQ+0Qcl8Z87mNJMsn/TEjpjjxDqWQRkVt5GJHWyYz9cU942X4S808IDxj03E0k6Xiljmkjrmh/ohAljM76CC8ZkhpEziZr0xJSGDQtXFMVr8x1TAZ0tXsJoqfdLmEw9NrOc0YeIwhoc3AmSikTarqFqQP6OScq3NwPwuFsUnb45a7+P5NTdxlh00tX3ctThYcV+YgPl38YV7clSG4GImwy9q</script>
+<script id="locked" type="application/octet-stream">opjbaNCFB/+UVi7PMK0yoTx8km1uex04hq3qXyIVK40lrC9sHDZfwGIJVXR+SHMHktSF7p5264YwffYjlse64sEkyvke/y8HlE+5yg4ro5STchLm/1zKI7yUoXWQa4bj0wq16pCYH2nqEljzVj19hWrWhBzxSxEAFuMuWo+FUJHMqrZsCGN7irydvZHMATJx4aOMy4KMowdNM/bCWu7DaP4cWGKRI0VDBIgstQuMKJqU4s/Sc3b0bRTHzd+4Y+LaSnjObd0FdIhVjZlwdcp4UQig0b4bF0+suGRdjcctX6AbVtADU7z+UubGfxpPL9w1wouDuAppp2pzPinfyHeTzkybhhM5sDu1r+QpNaXzMUMxhhG2hZQKV5w5Vmd6C3rQ4iQGANHhO+VHUFML5xQvA3gl22gX/FF1fkfq7r2DZdIdaWUVPkwEX7T5dJ5zbdpvNpUDL3GW7+DNcpdwOEMKt5YXTIigVP5WLzinTo75IjLFraiHS7MTSJordSaE0+BEp68gONiT78195IKD2movV62MlvxFL+NS22H2</script>
 <script>
 (function(){
   'use strict';
+  /* the gate needs a secure context: send plain http to https */
+  if(location.protocol==='http:'&&location.hostname.indexOf('.')>0){location.replace('https://'+location.host+location.pathname+location.search);return;}
   /* ---------- the gate ---------- */
   var gate=document.getElementById('gate'),key=document.getElementById('key'),enter=document.getElementById('enter');
   var priv=document.getElementById('private'),contact=document.getElementById('contact');
