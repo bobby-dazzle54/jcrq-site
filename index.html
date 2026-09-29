@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>JCRQ FM</title>
 <meta name="description" content="JCRQ FM. A private office.">
-<meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
@@ -185,69 +184,29 @@
   <section class="mark-block">
     <h1 class="mark">JCRQ FM</h1>
     <div class="rule" aria-hidden="true"></div>
-    <form class="gate" id="gate" autocomplete="off">
-      <input class="key" id="key" type="password" placeholder="Password" aria-label="Password" autocomplete="current-password" spellcheck="false" autocapitalize="off">
-      <button type="submit" class="enter" id="enter">Enter</button>
-    </form>
-    <div id="private" hidden></div>
+    <p class="line">Private counsel to a small number of families and the businesses they hold.</p>
+    <p class="note">Engagements by introduction</p>
   </section>
   <footer class="foot">
-    <div class="contact" id="contact"></div>
+    <div class="contact"><a class="mail" id="mail" href="mailto:james@recurringservices.co.uk">james@recurringservices.co.uk</a><button type="button" class="copy" id="copy" aria-live="polite">Copy</button></div>
     <p class="legal">&copy; 2026 JCRQ FM</p>
   </footer>
 </main>
-<script id="locked" type="application/octet-stream">opjbaNCFB/+UVi7PMK0yoTx8km1uex04hq3qXyIVK40lrC9sHDZfwGIJVXR+SHMHktSF7p5264YwffYjlse64sEkyvke/y8HlE+5yg4ro5STchLm/1zKI7yUoXWQa4bj0wq16pCYH2nqEljzVj19hWrWhBzxSxEAFuMuWo+FUJHMqrZsCGN7irydvZHMATJx4aOMy4KMowdNM/bCWu7DaP4cWGKRI0VDBIgstQuMKJqU4s/Sc3b0bRTHzd+4Y+LaSnjObd0FdIhVjZlwdcp4UQig0b4bF0+suGRdjcctX6AbVtADU7z+UubGfxpPL9w1wouDuAppp2pzPinfyHeTzkybhhM5sDu1r+QpNaXzMUMxhhG2hZQKV5w5Vmd6C3rQ4iQGANHhO+VHUFML5xQvA3gl22gX/FF1fkfq7r2DZdIdaWUVPkwEX7T5dJ5zbdpvNpUDL3GW7+DNcpdwOEMKt5YXTIigVP5WLzinTo75IjLFraiHS7MTSJordSaE0+BEp68gONiT78195IKD2movV62MlvxFL+NS22H2</script>
 <script>
 (function(){
   'use strict';
-  /* the gate needs a secure context: send plain http to https */
-  if(location.protocol==='http:'&&location.hostname.indexOf('.')>0){location.replace('https://'+location.host+location.pathname+location.search);return;}
-  /* ---------- the gate ---------- */
-  var gate=document.getElementById('gate'),key=document.getElementById('key'),enter=document.getElementById('enter');
-  var priv=document.getElementById('private'),contact=document.getElementById('contact');
-  var BLOB=document.getElementById('locked').textContent.trim();
-  var ITER=250000;
-  function b64(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u;}
-  function open(pw){
-    var raw=b64(BLOB),salt=raw.slice(0,16),iv=raw.slice(16,28),ct=raw.slice(28),enc=new TextEncoder();
-    return crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey'])
-      .then(function(k){return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:ITER,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt']);})
-      .then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},k,ct);})
-      .then(function(buf){return JSON.parse(new TextDecoder().decode(buf));});
+  /* ---------- contact ---------- */
+  var mailEl=document.getElementById('mail'), copyBtn=document.getElementById('copy');
+  var ADDRESS=mailEl.textContent.trim();
+  function copied(){copyBtn.textContent='Copied';setTimeout(function(){copyBtn.textContent='Copy';},1800);}
+  function selectAddress(){
+    try{var r=document.createRange();r.selectNodeContents(mailEl);var s=window.getSelection();s.removeAllRanges();s.addRange(r);
+      if(document.execCommand&&document.execCommand('copy'))copied();}catch(e){}
   }
-  function reveal(d){
-    priv.innerHTML=d.private;priv.hidden=false;
-    contact.innerHTML=d.contact;
-    gate.parentNode.removeChild(gate);
-    bindCopy();
-  }
-  function bindCopy(){
-    var mailEl=document.getElementById('mail'),copyBtn=document.getElementById('copy');
-    if(!mailEl||!copyBtn)return;
-    var ADDRESS=mailEl.textContent.trim();
-    function copied(){copyBtn.textContent='Copied';setTimeout(function(){copyBtn.textContent='Copy';},1800);}
-    function selectAddress(){
-      try{var r=document.createRange();r.selectNodeContents(mailEl);var s=window.getSelection();s.removeAllRanges();s.addRange(r);
-        if(document.execCommand&&document.execCommand('copy'))copied();}catch(e){}
-    }
-    copyBtn.addEventListener('click',function(){
-      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ADDRESS).then(copied,selectAddress);}
-      else selectAddress();
-    });
-  }
-  function attempt(pw,remember){
-    if(!pw||!window.crypto||!crypto.subtle)return;
-    gate.classList.remove('no');gate.classList.add('busy');
-    open(pw).then(function(d){
-      try{if(remember)sessionStorage.setItem('jcrq',pw);}catch(e){}
-      reveal(d);
-    },function(){
-      gate.classList.remove('busy');gate.classList.add('no');key.value='';key.focus();
-      setTimeout(function(){gate.classList.remove('no');},900);
-    });
-  }
-  gate.addEventListener('submit',function(e){e.preventDefault();attempt(key.value,true);});
-  try{var s=sessionStorage.getItem('jcrq');if(s)attempt(s,false);}catch(e){}
+  copyBtn.addEventListener('click',function(){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ADDRESS).then(copied,selectAddress);}
+    else selectAddress();
+  });
 
   /* ---------- the coast ---------- */
   var cv=document.getElementById('scene');
