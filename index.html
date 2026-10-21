@@ -116,6 +116,23 @@
     transition:color .3s ease;
   }
   .enter:hover,.gate.no .enter{color:var(--gold);}
+  .user{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+  .gate{flex-wrap:wrap;position:relative;}
+  .keep{
+    flex-basis:100%;
+    display:inline-flex;align-items:center;gap:.55rem;
+    margin-top:1.1rem;
+    font-family:var(--display);
+    font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--bone-faint);cursor:pointer;user-select:none;
+    transition:color .3s ease;
+  }
+  .keep:hover{color:var(--bone-dim);}
+  .keep input{position:absolute;opacity:0;width:0;height:0;}
+  .keep i{width:.8rem;height:.8rem;border:1px solid rgba(236,229,214,.4);border-radius:2px;flex:none;position:relative;transition:border-color .3s ease;}
+  .keep input:checked+i{border-color:var(--gold);}
+  .keep input:checked+i::after{content:"";position:absolute;inset:3px;background:var(--gold);}
+  .keep input:focus-visible+i{outline:1px solid var(--focus);outline-offset:3px;}
   .gate.busy .enter{color:var(--bone-faint);pointer-events:none;}
   #private{animation:rise 1.1s cubic-bezier(.2,.6,.2,1) both;}
   #private[hidden]{display:none;}
@@ -150,7 +167,10 @@
     transition:color .3s ease;
   }
   .copy:hover{color:var(--gold);}
-  .legal{
+  .legal{display:flex;align-items:baseline;gap:1.6rem;}
+  .door{color:var(--bone-faint);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent;transition:color .3s ease,border-color .3s ease;}
+  .door:hover{color:var(--gold);border-color:var(--gold);}
+  .legal-x{
     margin:0;
     font-family:var(--display);
     font-size:.66rem;
@@ -189,7 +209,7 @@
   </section>
   <footer class="foot">
     <div class="contact"><a class="mail" id="mail" href="mailto:james@recurringservices.co.uk">james@recurringservices.co.uk</a><button type="button" class="copy" id="copy" aria-live="polite">Copy</button></div>
-    <p class="legal">&copy; 2026 JCRQ FM</p>
+    <p class="legal">&copy; 2026 JCRQ FM<a class="door" href="/family/">Sign in</a></p>
   </footer>
 </main>
 <script>
