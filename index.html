@@ -317,6 +317,57 @@ body.locked{overflow:hidden}
 .launch .p-meta{margin-left:auto}
 .mini[aria-pressed="true"]{background:var(--gold); color:var(--gold-ink); border-color:var(--gold)}
 @media (min-width:1181px){ .cols{grid-template-columns:minmax(0,1fr) minmax(0,2.6fr) minmax(0,1fr)} }
+/* task bar */
+.tsum{display:flex; flex-wrap:wrap; gap:4px 14px; margin-bottom:12px; font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+.tsum b{color:var(--ink); font-weight:500}
+.tsum .a-warn b{color:var(--gold)} .tsum .a-old b{color:var(--alert)}
+.grp{display:flex; align-items:center; gap:8px; margin:16px 0 8px; font-family:var(--f-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+#openList > .grp:first-child,#doneList > .grp:first-child{margin-top:0}
+.grp b{font-weight:500; color:var(--soft)}
+.grp::after{content:""; flex:1; height:1px; background:var(--line-soft)}
+.grp.a-warn,.grp.a-warn b{color:var(--gold)}
+.grp.a-old,.grp.a-old b{color:var(--alert)}
+.titem{display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:9px 10px 9px 12px; border-radius:var(--r-md); background:var(--tint)}
+.titem input[type="checkbox"]{width:20px; height:20px; accent-color:var(--gold); margin:0; flex:none; cursor:pointer}
+.t-txt{flex:1; min-width:0; overflow-wrap:break-word; line-height:1.35}
+label.t-txt{cursor:pointer}
+.t-body{flex:1; min-width:0}
+.t-meta2{font-size:12px; color:var(--muted); margin-top:2px}
+.titem.done .t-txt{color:var(--soft)}
+.age{flex:none; font-family:var(--f-mono); font-size:10.5px; padding:2px 8px; border-radius:999px; background:var(--tint-2); color:var(--soft)}
+.age.a-warn{background:var(--gold-wash); color:var(--gold)}
+.age.a-old{background:var(--alert-wash); color:var(--alert)}
+.pring{position:relative; flex:none; width:38px; height:38px; padding:0; margin:-3px 0; border:0; border-radius:50%; background:none; color:var(--ink); cursor:pointer}
+.pring svg{display:block; width:100%; height:100%; transform:rotate(-90deg)}
+.pring .trk{fill:none; stroke:var(--tint-2); stroke-width:4}
+.pring .arc{fill:none; stroke:var(--gold); stroke-width:4; stroke-linecap:round; transition:stroke-dashoffset .25s}
+.pring b{position:absolute; inset:0; display:grid; place-items:center; font-family:var(--f-mono); font-size:10px; font-weight:500}
+button.pring:hover .trk{stroke:var(--gold-wash)}
+.pring.sm{width:28px; height:28px; margin:0; cursor:default}
+.pring.sm b{font-size:8px}
+.tick{flex:none; width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:var(--ok-wash); color:var(--ok); font-weight:700; font-size:14px}
+.ring-ed{flex-basis:100%; display:flex; flex-wrap:wrap; align-items:center; gap:8px 10px; padding:6px 0 2px 48px}
+.ring-ed input[type="range"]{flex:1 1 160px; min-width:120px; accent-color:var(--gold)}
+.ring-ed output{min-width:42px; font-family:var(--f-mono); font-size:12px; color:var(--gold)}
+.ring-tg{flex:none; min-height:44px; display:inline-flex; align-items:center; gap:6px; padding:0 12px; border-radius:var(--r-md); border:1px solid var(--line); background:transparent; color:var(--soft); font-weight:600; font-size:13px; cursor:pointer}
+.ring-tg svg{width:16px; height:16px}
+.ring-tg:hover{border-color:var(--gold-line); color:var(--ink)}
+.ring-tg[aria-pressed="true"]{background:var(--gold-wash); border-color:var(--gold-line); color:var(--gold)}
+.t-foot{display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:12px; padding-top:10px; border-top:1px solid var(--line-soft)}
+.t-hint{font-size:11.5px; color:var(--muted)}
+.prog{display:grid; grid-template-columns:minmax(0,auto) minmax(0,1fr); gap:12px 20px; align-items:end; padding:14px; margin-bottom:14px; border-radius:var(--r-md); background:var(--sink)}
+.prog-big{font-weight:800; font-size:34px; line-height:1}
+.prog-lbl{margin-top:4px; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.prog-sub{margin-top:6px; font-size:12px; color:var(--soft); max-width:26ch}
+.bars{display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:6px; align-items:end; height:84px}
+.bar{display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:4px; height:100%; min-width:0}
+.bar i{display:block; width:100%; max-width:24px; min-height:3px; border-radius:4px 4px 1px 1px; background:var(--gold)}
+.bar.zero i{background:var(--tint-2)}
+.bar em{font-style:normal; font-family:var(--f-mono); font-size:10px; color:var(--soft); min-height:12px; line-height:12px}
+.bar span{font-family:var(--f-mono); font-size:9.5px; color:var(--muted); white-space:nowrap}
+.bar.today span{color:var(--gold)}
+@media (max-width:420px){ .prog{grid-template-columns:minmax(0,1fr)} .ring-ed{padding-left:0} }
+@media (prefers-reduced-motion:reduce){ .ring .arc{transition:none} }
 </style>
 </head>
 <body class="locked">
@@ -462,15 +513,28 @@ body.locked{overflow:hidden}
 
       <section class="glass tasks" aria-labelledby="tkT">
         <div class="p-head">
-          <h2 id="tkT">Today's tasks</h2>
-          <span class="p-meta"><span id="mineCount">0 of 0</span> complete · <a class="p-link" href="https://claude.ai/artifact/2aCEEXRHLpSWxmr6qNoDG7" target="_blank" rel="noopener">Mo's queue ↗</a></span>
+          <h2 id="tkT">Tasks</h2>
+          <div class="seg" role="tablist" aria-label="Task view">
+            <button type="button" role="tab" id="tabOpen" aria-selected="true" aria-controls="paneOpen" data-tab="open">Open · <span id="openCount">0</span></button>
+            <button type="button" role="tab" id="tabDone" aria-selected="false" aria-controls="paneDone" data-tab="done">Done · <span id="doneCount">0</span></button>
+          </div>
         </div>
-        <ul class="list" id="todoList"></ul>
-        <form class="add" id="todoForm" autocomplete="off">
-          <label class="sr" for="todoIn">Add a task</label>
-          <input id="todoIn" type="text" placeholder="Add a task, or start with “Mo,” to hand it to Mo">
-          <button type="submit" class="add-b" aria-label="Add task">+</button>
-        </form>
+        <div id="paneOpen" role="tabpanel" aria-labelledby="tabOpen">
+          <div class="tsum" id="openSum"></div>
+          <div id="openList"></div>
+          <form class="add" id="todoForm" autocomplete="off">
+            <label class="sr" for="todoIn">Add a task</label>
+            <input id="todoIn" type="text" placeholder="Add a task (end with 60% to track it as a ring)">
+            <button type="button" class="ring-tg" id="ringToggle" aria-pressed="false" title="Track the next task as a progress ring">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="8.5" opacity=".3"/><path d="M12 3.5a8.5 8.5 0 0 1 8.5 8.5"/></svg>Ring</button>
+            <button type="submit" class="add-b" aria-label="Add task">+</button>
+          </form>
+        </div>
+        <div id="paneDone" role="tabpanel" aria-labelledby="tabDone" hidden>
+          <div class="prog" id="prog"></div>
+          <div id="doneList"></div>
+        </div>
+        <div class="t-foot"><span class="msg" id="tMsg" aria-live="polite"></span><span class="t-hint">Start a task with “Mo,” to hand it off · saved on this device · <a class="p-link" href="https://claude.ai/artifact/2aCEEXRHLpSWxmr6qNoDG7" target="_blank" rel="noopener">Mo's queue ↗</a></span></div>
       </section>
     </div>
 
@@ -854,8 +918,7 @@ function setEditing(on){
 /* ---------- prefs + to-dos ---------- */
 let prefs = (() => { const p = store.get("jcrq-home-prefs", {}); return { muted: Array.isArray(p.muted) ? p.muted : [], mutedTitles: Array.isArray(p.mutedTitles) ? p.mutedTitles : [] }; })();
 function savePrefs(next){ prefs = next; store.set("jcrq-home-prefs", next); schedule(); }
-let todos = store.get("jcrq-home-todos", []); if (!Array.isArray(todos)) todos = [];
-function saveTodos(){ store.set("jcrq-home-todos", todos); schedule(); }
+/* task bar data lives further down */
 
 /* ---------- Claude hand-offs ---------- */
 const CH = { email: "Email", whatsapp: "WhatsApp", imessage: "iMessage", mac: "Mac", research: "Research", calendar: "Calendar" };
@@ -1061,23 +1124,264 @@ function renderWeather(){
   const up = new Date(wx.at);
   foot.replaceChildren(h("span", { text: `Updated ${fTime.format(up)} · Kingston` + (wxErr ? " · offline" : "") }), h("a", { href: WX_LINK, target: "_blank", rel: "noopener", text: "Full forecast ↗" }));
 }
-function visibleTodos(){ const t0 = startOfDay(new Date()).getTime(); return todos.filter(t => !t.done || (typeof t.doneMs === "number" && t.doneMs >= t0)); }
-function renderTodos(){
-  const list = $("#todoList"), vis = visibleTodos();
-  $("#mineCount").textContent = `${vis.filter(t => t.done).length} of ${vis.length}`;
-  if (!vis.length) { list.replaceChildren(h("li", { class: "empty" }, h("p", { text: "No tasks yet. Add one below, or start with “Mo,” to hand it straight to Mo." }))); return; }
-  const open = vis.filter(t => !t.done).sort((a, b) => (a.createdMs || 0) - (b.createdMs || 0));
-  const fin = vis.filter(t => t.done).sort((a, b) => (b.doneMs || 0) - (a.doneMs || 0));
-  list.replaceChildren(...open.concat(fin).map(t => {
-    const id = "td-" + String(t.id).replace(/[^A-Za-z0-9_-]/g, "_");
-    return h("li", { class: "todo" + (t.done ? " done" : ""), "data-id": t.id },
-      h("input", { type: "checkbox", id, checked: !!t.done, "data-act": "todo-toggle" }),
-      h("label", { for: id, text: String(t.text || "") }),
-      h("div", { class: "row-a" },
-        t.done ? null : h("button", { type: "button", class: "ib", "data-act": "todo-delegate", "aria-label": "Hand this to Mo", title: "Hand to Mo" }, "→"),
-        h("button", { type: "button", class: "ib", "data-act": "todo-del", "aria-label": "Delete task", title: "Delete" }, "×")));
-  }));
+/* ---------- task bar ---------- */
+const TODO_KEY = "jcrq-home-todos";
+const clampPct = v => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
+function normTodo(t){
+  return {
+    id: String(t.id), text: String(t.text || "").slice(0, 500), done: !!t.done,
+    doneMs: typeof t.doneMs === "number" ? t.doneMs : null,
+    createdMs: typeof t.createdMs === "number" ? t.createdMs : Date.now(),
+    ring: !!t.ring, pct: clampPct(t.pct), via: t.via === "mo" ? "mo" : ""
+  };
 }
+let todos = (() => { const v = store.get(TODO_KEY, []); return Array.isArray(v) ? v.filter(t => t && t.id != null).map(normTodo) : []; })();
+let ttab = store.get("jcrq-home-ttab", "open"); if (ttab !== "open" && ttab !== "done") ttab = "open";
+let ringNew = false, editRing = null, undoSnap = null, tMsgTimer = 0, dragging = false, showAllDone = false;
+function saveTodos(){
+  const open = todos.filter(t => !t.done);
+  const done = todos.filter(t => t.done).sort((a, b) => (b.doneMs || 0) - (a.doneMs || 0)).slice(0, 500);
+  todos = open.concat(done);
+  store.set(TODO_KEY, todos);
+  schedule();
+}
+function snap(){ undoSnap = JSON.stringify(todos); }
+function tMsg(text, undo){
+  const el = $("#tMsg"); clearTimeout(tMsgTimer);
+  el.replaceChildren(text, undo ? " · " : "", undo ? h("button", { type: "button", class: "linkbtn", "data-act": "t-undo", text: "Undo" }) : "");
+  tMsgTimer = setTimeout(() => { el.textContent = ""; undoSnap = null; }, 8000);
+}
+const short = t => "“" + (t.length > 40 ? t.slice(0, 38) + "…" : t) + "”";
+const ageDays = t => Math.max(0, -dayDiff(t.createdMs));
+const ageCls = a => a >= 8 ? "a-old" : a >= 4 ? "a-warn" : "";
+const AGE_GROUPS = [
+  { label: "Over a week old", test: a => a >= 8, cls: "a-old" },
+  { label: "4–7 days old", test: a => a >= 4 && a <= 7, cls: "a-warn" },
+  { label: "2–3 days old", test: a => a >= 2 && a <= 3, cls: "" },
+  { label: "Yesterday", test: a => a === 1, cls: "" },
+  { label: "Added today", test: a => a === 0, cls: "" }
+];
+const RC = 2 * Math.PI * 15;
+function ringEl(p, tag, attrs){
+  const el = h(tag, attrs);
+  el.innerHTML = `<svg viewBox="0 0 36 36" aria-hidden="true"><circle class="trk" cx="18" cy="18" r="15"/><circle class="arc" cx="18" cy="18" r="15" stroke-dasharray="${RC.toFixed(2)}" stroke-dashoffset="${(RC * (1 - p / 100)).toFixed(2)}"/></svg>`;
+  el.append(h("b", { "aria-hidden": "true", text: String(p) }));
+  return el;
+}
+function paintRing(li, p){
+  if (!li) return;
+  const arc = li.querySelector(".pring .arc"), b = li.querySelector(".pring b"), out = li.querySelector("output"), btn = li.querySelector("button.pring");
+  if (arc) arc.setAttribute("stroke-dashoffset", (RC * (1 - p / 100)).toFixed(2));
+  if (b) b.textContent = String(p);
+  if (out) out.textContent = p + "%";
+  if (btn) btn.setAttribute("aria-label", `Progress ${p}%. Change progress`);
+}
+const findT = id => todos.find(x => x.id === id);
+function addTask(raw){
+  let text = raw.trim(); if (!text) return;
+  const m = text.match(/^mo\b[\s,:\-–]+(.+)$/i);
+  if (m && m[1].trim()) { toMo(m[1].trim(), {}); tMsg("Handed to Mo in a new tab."); return; }
+  let ring = ringNew, pct = 0;
+  const pm = text.match(/^(.*?\S)\s*[-–,:]?\s+(\d{1,3})\s*%$/) || text.match(/^(.*?\S)[-–,:](\d{1,3})\s*%$/);
+  if (pm && pm[1].trim()) { text = pm[1].trim(); ring = true; pct = clampPct(pm[2]); }
+  const t = normTodo({ id: "t" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), text, ring, pct, createdMs: Date.now() });
+  if (t.ring && t.pct >= 100) { t.done = true; t.doneMs = Date.now(); }
+  todos.push(t);
+  ringNew = false; $("#ringToggle").setAttribute("aria-pressed", "false");
+  saveTodos();
+  if (t.done) tMsg(`Added ${short(t.text)} straight to Done`);
+}
+function complete(id, via){
+  const t = findT(id); if (!t || t.done) return;
+  snap();
+  t.done = true; t.doneMs = Date.now();
+  if (via === "mo") t.via = "mo"; else if (t.ring) t.pct = 100;
+  if (editRing === id) editRing = null;
+  saveTodos();
+  tMsg(via === "mo" ? `Handed ${short(t.text)} to Mo and moved it to Done` : `Done: ${short(t.text)}`, true);
+}
+function reopen(id){
+  const t = findT(id); if (!t) return;
+  snap();
+  t.done = false; t.doneMs = null; t.via = "";
+  if (t.ring && t.pct >= 100) t.pct = 90;
+  saveTodos();
+  tMsg(`Reopened ${short(t.text)}`, true);
+}
+function removeTask(id){
+  const t = findT(id); if (!t) return;
+  snap();
+  todos = todos.filter(x => x.id !== id);
+  if (editRing === id) editRing = null;
+  saveTodos();
+  tMsg(`Deleted ${short(t.text)}`, true);
+}
+function setTTab(t){
+  ttab = t; store.set("jcrq-home-ttab", t);
+  $("#tabOpen").setAttribute("aria-selected", String(t === "open"));
+  $("#tabDone").setAttribute("aria-selected", String(t === "done"));
+  $("#paneOpen").hidden = t !== "open"; $("#paneDone").hidden = t !== "done";
+}
+const safeId = id => id.replace(/[^A-Za-z0-9_-]/g, "_");
+function fmtDay(ms){ const d = new Date(ms); return `${fWk.format(d)} ${d.getDate()} ${fMon.format(d)}`; }
+function openRow(t){
+  const age = ageDays(t), cls = ageCls(age);
+  const li = h("li", { class: "titem" + (t.ring ? " is-ring" : ""), "data-id": t.id });
+  if (t.ring) {
+    li.append(
+      ringEl(t.pct, "button", { type: "button", class: "pring", "data-act": "ring-edit", "aria-expanded": String(editRing === t.id), "aria-label": `Progress ${t.pct}%. Change progress`, title: "Change progress" }),
+      h("span", { class: "t-txt", text: t.text }));
+  } else {
+    const cid = "td-" + safeId(t.id);
+    li.append(h("input", { type: "checkbox", id: cid, "data-act": "t-check" }), h("label", { class: "t-txt", for: cid, text: t.text }));
+  }
+  li.append(
+    h("span", { class: "age " + cls, title: "Added " + fmtDay(t.createdMs), text: age === 0 ? "new" : age + "d" }),
+    h("div", { class: "row-a" },
+      t.ring
+        ? h("button", { type: "button", class: "ib", "data-act": "t-done", "aria-label": `Mark ${t.text} done`, title: "Mark done" }, "✓")
+        : h("button", { type: "button", class: "ib", "data-act": "t-ring-on", "aria-label": `Track ${t.text} as a progress ring`, title: "Track %" }, "%"),
+      h("button", { type: "button", class: "ib", "data-act": "t-mo", "aria-label": `Hand ${t.text} to Mo`, title: "Hand to Mo" }, "→"),
+      h("button", { type: "button", class: "ib", "data-act": "t-del", "aria-label": `Delete ${t.text}`, title: "Delete" }, "×")));
+  if (t.ring && editRing === t.id) {
+    const rid = "rg-" + safeId(t.id);
+    li.append(h("div", { class: "ring-ed" },
+      h("label", { class: "sr", for: rid, text: "Progress" }),
+      h("input", { type: "range", id: rid, min: "0", max: "100", step: "5", value: String(t.pct), "data-act": "ring-range" }),
+      h("output", { for: rid, text: t.pct + "%" }),
+      [25, 50, 75].map(v => h("button", { type: "button", class: "mini", "data-act": "ring-q", "data-v": v, text: v + "%" })),
+      h("button", { type: "button", class: "mini solid", "data-act": "t-done", text: "Done" }),
+      h("button", { type: "button", class: "linkbtn", "data-act": "t-ring-off", text: "Plain task" })));
+  }
+  return li;
+}
+function doneRow(t){
+  const took = Math.max(0, Math.round((startOfDay(new Date(t.doneMs)) - startOfDay(new Date(t.createdMs))) / DAY));
+  const dd = dayDiff(t.doneMs), d = new Date(t.doneMs);
+  const when = dd === 0 ? fTime.format(d) : dd === -1 ? "yesterday " + fTime.format(d) : fmtDay(t.doneMs);
+  const icon = t.ring ? ringEl(t.via === "mo" ? t.pct : 100, "span", { class: "pring sm" }) : h("span", { class: "tick", "aria-hidden": "true", text: "✓" });
+  const meta = t.via === "mo" ? `Handed to Mo ${when}` : `Done ${when} · took ${took === 0 ? "under a day" : took + (took === 1 ? " day" : " days")}`;
+  return h("li", { class: "titem done", "data-id": t.id }, icon,
+    h("div", { class: "t-body" }, h("div", { class: "t-txt", text: t.text }), h("div", { class: "t-meta2", text: meta })),
+    h("div", { class: "row-a" },
+      h("button", { type: "button", class: "ib", "data-act": "t-reopen", "aria-label": `Reopen ${t.text}`, title: "Reopen" }, "↺"),
+      h("button", { type: "button", class: "ib", "data-act": "t-del", "aria-label": `Delete ${t.text}`, title: "Delete" }, "×")));
+}
+function renderTodos(){
+  if (dragging) return;
+  const ae = document.activeElement, hadRange = !!(ae && ae.dataset && ae.dataset.act === "ring-range");
+  const open = todos.filter(t => !t.done), done = todos.filter(t => t.done).sort((a, b) => b.doneMs - a.doneMs);
+  $("#openCount").textContent = String(open.length);
+  $("#doneCount").textContent = String(done.length);
+  const rings = open.filter(t => t.ring), avg = rings.length ? Math.round(rings.reduce((s, t) => s + t.pct, 0) / rings.length) : 0;
+  const oldest = open.reduce((m, t) => Math.max(m, ageDays(t)), 0);
+  const sum = [h("span", {}, h("b", { text: String(open.length) }), " open")];
+  if (rings.length) sum.push(h("span", {}, h("b", { text: String(rings.length) }), ` in progress · avg `, h("b", { text: avg + "%" })));
+  if (open.length) sum.push(h("span", { class: ageCls(oldest) }, "oldest ", h("b", { text: oldest === 0 ? "today" : oldest + "d" })));
+  $("#openSum").replaceChildren(...sum);
+  const box = $("#openList");
+  if (!open.length) box.replaceChildren(h("div", { class: "empty" }, h("p", { text: "Nothing open. Add a task below. End it with a percentage, like “Website rebuild 60%”, or press Ring, to track it as a progress ring." })));
+  else {
+    const kids = [];
+    for (const g of AGE_GROUPS) {
+      const items = open.filter(t => g.test(ageDays(t))).sort((a, b) => a.createdMs - b.createdMs);
+      if (!items.length) continue;
+      kids.push(h("div", { class: "grp " + g.cls }, g.label, h("b", { text: String(items.length) })), h("ul", { class: "list" }, items.map(openRow)));
+    }
+    box.replaceChildren(...kids);
+  }
+  renderDone(done);
+  if (hadRange && editRing) { const r = document.getElementById("rg-" + safeId(editRing)); if (r) r.focus(); }
+}
+function renderDone(done){
+  const now = new Date(), days = [];
+  for (let i = 6; i >= 0; i--) {
+    const s0 = startOfDay(addDays(now, -i)).getTime(), e0 = startOfDay(addDays(now, -i + 1)).getTime();
+    days.push({ s: s0, n: done.filter(t => t.doneMs >= s0 && t.doneMs < e0).length, today: i === 0 });
+  }
+  const week = days.reduce((a, d) => a + d.n, 0), max = Math.max(1, ...days.map(d => d.n));
+  const recent = done.filter(t => t.via !== "mo").slice(0, 30);
+  const avgTook = recent.length ? recent.reduce((a, t) => a + Math.max(0, t.doneMs - t.createdMs), 0) / recent.length / DAY : 0;
+  const sub = `${days[6].n} today` + (recent.length ? ` · ${avgTook < 1 ? "under a day" : avgTook.toFixed(1) + " days"} to finish, on average` : "");
+  $("#prog").replaceChildren(
+    h("div", {}, h("div", { class: "prog-big", text: String(week) }), h("div", { class: "prog-lbl", text: "Done in 7 days" }), h("div", { class: "prog-sub", text: sub })),
+    h("div", { class: "bars", role: "img", "aria-label": "Tasks done per day over the last 7 days: " + days.map(d => `${fWk.format(new Date(d.s))} ${d.n}`).join(", ") },
+      days.map(d => h("div", { class: "bar" + (d.n ? "" : " zero") + (d.today ? " today" : "") },
+        h("em", { text: d.n ? String(d.n) : "" }),
+        h("i", { style: `height:${Math.max(3, Math.round(d.n / max * 56))}px` }),
+        h("span", { text: d.today ? "Today" : fWk.format(new Date(d.s)).slice(0, 2) })))));
+  const box = $("#doneList");
+  if (!done.length) { box.replaceChildren(h("div", { class: "empty" }, h("p", { text: "Finished tasks land here, so you can see what you've got through." }))); return; }
+  const groups = [
+    ["Today", t => dayDiff(t.doneMs) === 0],
+    ["Yesterday", t => dayDiff(t.doneMs) === -1],
+    ["Earlier this week", t => { const x = dayDiff(t.doneMs); return x <= -2 && x >= -6; }],
+    ["Older", t => dayDiff(t.doneMs) <= -7]
+  ];
+  const kids = [];
+  for (const [label, test] of groups) {
+    const all = done.filter(test); if (!all.length) continue;
+    const items = label === "Older" && !showAllDone ? all.slice(0, 20) : all;
+    kids.push(h("div", { class: "grp" }, label, h("b", { text: String(all.length) })), h("ul", { class: "list" }, items.map(doneRow)));
+    if (items.length < all.length) kids.push(h("button", { type: "button", class: "linkbtn", "data-act": "t-showall", text: `Show all ${all.length}` }));
+  }
+  box.replaceChildren(...kids);
+}
+function bindTasks(){
+  const el = $(".tasks");
+  el.addEventListener("click", ev => {
+    const tb = ev.target.closest(".seg button[data-tab]");
+    if (tb) { setTTab(tb.dataset.tab); return; }
+    const b = ev.target.closest("button[data-act]");
+    if (!b) return;
+    const act = b.dataset.act, li = b.closest("[data-id]"), id = li ? li.dataset.id : null;
+    if (act === "ring-edit") {
+      editRing = editRing === id ? null : id; schedule();
+      requestAnimationFrame(() => { const r = editRing && document.getElementById("rg-" + safeId(editRing)); if (r) r.focus(); });
+    }
+    else if (act === "ring-q") { const t = findT(id); if (t) { t.pct = clampPct(b.dataset.v); saveTodos(); } }
+    else if (act === "t-done") complete(id);
+    else if (act === "t-ring-on") { const t = findT(id); if (t) { t.ring = true; t.pct = 0; editRing = id; saveTodos(); } }
+    else if (act === "t-ring-off") { const t = findT(id); if (t) { t.ring = false; t.pct = 0; editRing = null; saveTodos(); } }
+    else if (act === "t-mo") { const t = findT(id); if (t) { toMo(t.text, {}); complete(id, "mo"); } }
+    else if (act === "t-del") removeTask(id);
+    else if (act === "t-reopen") reopen(id);
+    else if (act === "t-undo" && undoSnap) {
+      try { todos = JSON.parse(undoSnap).map(normTodo); } catch (e) {}
+      undoSnap = null; clearTimeout(tMsgTimer); $("#tMsg").textContent = ""; saveTodos();
+    }
+    else if (act === "t-showall") { showAllDone = true; schedule(); }
+  });
+  el.addEventListener("change", ev => {
+    const t = ev.target, li = t.closest("[data-id]"); if (!li) return;
+    if (t.dataset.act === "t-check" && t.checked) complete(li.dataset.id);
+    else if (t.dataset.act === "ring-range") {
+      dragging = false;
+      const task = findT(li.dataset.id); if (!task) return;
+      task.pct = clampPct(t.value);
+      if (task.pct >= 100) complete(task.id); else saveTodos();
+    }
+  });
+  el.addEventListener("input", ev => {
+    const t = ev.target; if (t.dataset.act !== "ring-range") return;
+    paintRing(t.closest("[data-id]"), clampPct(t.value));
+  });
+  el.addEventListener("pointerdown", ev => { if (ev.target.dataset && ev.target.dataset.act === "ring-range") dragging = true; });
+  window.addEventListener("pointerup", () => { if (dragging) setTimeout(() => { dragging = false; }, 0); });
+  $("#todoForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const inp = $("#todoIn"), t = inp.value.trim();
+    if (!t) { inp.focus(); return; }
+    inp.value = ""; addTask(t);
+    if (ttab !== "open") setTTab("open");
+  });
+  $("#ringToggle").addEventListener("click", () => {
+    ringNew = !ringNew;
+    $("#ringToggle").setAttribute("aria-pressed", String(ringNew));
+    $("#todoIn").focus();
+  });
+}
+
 function renderLauncher(){
   const tiles = [];
   links().launcher.forEach((it, i) => {
@@ -1173,11 +1477,6 @@ document.addEventListener("click", ev => {
     try { if (token && window.google && google.accounts && google.accounts.oauth2) google.accounts.oauth2.revoke(token, () => {}); } catch (e) {}
     token = null; ss.del(TOK_KEY); store.del(CAL_KEY); calEvents = {}; calAt = 0; calErr = ""; calState = clientId() ? "idle" : "off"; schedule();
   }
-  else if (act === "todo-del" && li) { todos = todos.filter(t => t.id !== li.dataset.id); saveTodos(); }
-  else if (act === "todo-delegate" && li) {
-    const t = todos.find(x => x.id === li.dataset.id); if (!t) return;
-    toMo(String(t.text || ""), {}); todos = todos.filter(x => x.id !== t.id); saveTodos();
-  }
   else if (act === "rm-link") {
     const lk = links(), place = b.dataset.place === "nav" ? "nav" : "launcher", i = +b.dataset.i;
     const arr = lk[place]; if (!arr[i]) return;
@@ -1190,12 +1489,6 @@ document.addEventListener("click", ev => {
     saveLinks(lk); lMsg(`Restored ${lr.item.label}`);
   }
 });
-document.addEventListener("change", ev => {
-  const cb = ev.target.closest("input[data-act='todo-toggle']");
-  if (!cb) return;
-  const li = cb.closest("[data-id]"), t = li && todos.find(x => x.id === li.dataset.id);
-  if (t) { t.done = cb.checked; t.doneMs = cb.checked ? Date.now() : null; saveTodos(); }
-});
 document.addEventListener("keydown", ev => {
   if (ev.key !== "/" || ev.metaKey || ev.ctrlKey || ev.altKey || !booted || $("#top").hidden) return;
   const t = ev.target, tag = t && t.tagName;
@@ -1207,16 +1500,7 @@ q.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey && !e.
 q.addEventListener("input", onInput);
 $("#chanSel").addEventListener("change", onInput);
 $("#promptBtn").addEventListener("click", () => { const t = q.value.trim(); if (!t) { q.focus(); return; } openTab(CLAUDE_NEW + encodeURIComponent(PROMPT_ASK + t)); });
-$("#todoForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const inp = $("#todoIn"), t = inp.value.trim();
-  if (!t) { inp.focus(); return; }
-  inp.value = "";
-  const m = t.match(/^mo\b[\s,:\-–]+(.+)$/i);
-  if (m && m[1].trim()) { toMo(m[1].trim(), {}); return; }
-  todos.push({ id: "t" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), text: t.slice(0, 500), done: false, createdMs: Date.now() });
-  saveTodos();
-});
+bindTasks();
 $("#gear").addEventListener("click", () => setEditing(!editing));
 $("#addLink").addEventListener("submit", e => {
   e.preventDefault();
@@ -1247,6 +1531,7 @@ function boot(){
   const draft = store.get("jcrq-home-draft", "");
   if (typeof draft === "string" && draft) q.value = draft;
   setMode(mode);
+  setTTab(ttab);
   loadCalCache();
   if (clientId()) loadGis().then(() => { ensureTokenClient(); if (token && Date.now() - calAt > 30 * 60e3) fetchCal(); }, () => {});
   loadWeather();
